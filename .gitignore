@@ -1,5 +1,0 @@
-# igonore everything
-
-#but not
-!nvim/*
-!bash/*

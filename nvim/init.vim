@@ -1,4 +1,3 @@
-'test
 syntax on
 set background=dark
 colorscheme primary

@@ -1,1 +1,10 @@
-/Users/Thompson660/.bash_profile
+#!/usr/bn/env bash
+
+
+if [ -f "$(brew --prefix)/etc/bash_completion" ]; then
+	source  "$(brew --prefix)/etc/bash_completion"
+fi
+
+
+
+. ~/.config/bash/bashrc

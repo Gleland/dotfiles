@@ -1,1 +1,5 @@
-nvim/.netrwhist
+# igonore everything
+
+#but not
+!nvim/*
+!bash/*

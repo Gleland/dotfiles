@@ -5,6 +5,7 @@ set clipboard=unnamed
 set splitright
 set splitbelow
 set number
+map <space> <leader>
 
 
 tnoremap <Esc> <C-\><C-n>
@@ -18,8 +19,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" Shortcut for opening new split with terminal
-command! -nargs=* T vsplit | terminal <args>
+
+nnoremap <Leader>n  :vsplit <ESC> :terminal <CR>
 
 " shortcut for Ex mode
 nnoremap ; :

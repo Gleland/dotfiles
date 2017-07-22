@@ -1,6 +1,0 @@
-alias ls='ls -GF'
-alias nv='nvim'
-alias ld='ls -d */'
-alias la='ls -a'
-alias ll='ls -l'
-

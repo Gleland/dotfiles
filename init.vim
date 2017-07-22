@@ -5,9 +5,6 @@ set clipboard=unnamed
 set splitright
 set splitbelow
 set number
-"doesn't line hop
-nnoremap j gj
-nnoremap k gk
 
 
 tnoremap <Esc> <C-\><C-n>
@@ -20,6 +17,14 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" Shortcut for opening new split with terminal
+command! -nargs=* T vsplit | terminal <args>
+
+" shortcut for Ex mode
+nnoremap ; :
+nnoremap : ;
+
 
 
 highlight LineNr ctermbg=black
@@ -35,5 +40,5 @@ call plug#end()
 let g:airline_theme='papercolor'
 "check fiels if changed since recent activity and reload
 " check one time after 4s of inactivity in normal mode
-set autoread                                                                                                                                                                               
+set autoread
 au CursorHold * checktime

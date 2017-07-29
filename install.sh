@@ -4,7 +4,7 @@ cp ~/.bash_profile ~/.bash_profile.bak
 
 
 
-mv init.vim ~/.config/nvim/init.vim
-mv bashrc ~/.bashrc
-mv bash_profile ~/.bash_profile
+cp init.vim ~/.config/nvim/init.vim
+cp bashrc ~/.bashrc
+cp bash_profile ~/.bash_profile
 source ~/.bash_profile

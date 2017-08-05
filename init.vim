@@ -1,12 +1,23 @@
 syntax on
 set background=dark
 colorscheme primary
+highlight LineNr ctermbg=black
 set clipboard=unnamed
 set splitright
 set splitbelow
 set number
 map <space> <leader>
 
+" sets terminal settings to local bash settings
+set shell=/bin/bash\ --login
+
+"check fields if changed since recent activity and reload
+" check one time after 4s of inactivity in normal mode
+set autoread
+au CursorHold * checktime
+
+" =======================================================================
+" Key Mappings
 
 tnoremap <Esc> <C-\><C-n>
 tnoremap <C-h> <C-\><C-n><C-w>h
@@ -19,27 +30,26 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-
-nnoremap <Leader>n  :vsplit <ESC> :terminal <CR>
-
 " shortcut for Ex mode
 nnoremap ; :
 nnoremap : ;
 
+" opens new vsplit with terminal
+nnoremap <leader>n  :vsplit <ESC> :terminal <CR>
+" =======================================================================
 
 
-highlight LineNr ctermbg=black
+" =======================================================================
+" Plugin Settings
+
 " Vim-plug for plugins
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'dhruvasagar/vim-table-mode'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
+    "Plug 'dhruvasagar/vim-table-mode'
+    "Plug 'vim-airline/vim-airline'
+    "Plug 'vim-airline/vim-airline-themes'
+    Plug 'scrooloose/nerdtree'
 call plug#end()
+" Airline Theme
+"let g:airline_theme='papercolor'
+" =======================================================================
 
-"Airline Theme
-let g:airline_theme='papercolor'
-"check fiels if changed since recent activity and reload
-" check one time after 4s of inactivity in normal mode
-set autoread
-au CursorHold * checktime

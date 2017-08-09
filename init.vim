@@ -35,12 +35,14 @@ nnoremap ; :
 nnoremap : ;
 
 " opens new vsplit with terminal
-nnoremap <leader>n  :vsplit <ESC> :terminal <CR>
+nnoremap <leader>n  :vsplit <ESC> :terminal <cr>
+" nerd tree always opens in CWD
 " =======================================================================
 
 
 " =======================================================================
 " Plugin Settings
+
 
 " Vim-plug for plugins
 call plug#begin('~/.local/share/nvim/plugged')
@@ -50,6 +52,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'scrooloose/nerdtree'
 call plug#end()
 " Airline Theme
-"let g:airline_theme='papercolor'
+let g:airline_theme='papercolor'
+nnoremap <leader>f :NERDTree <cr>
 " =======================================================================
 

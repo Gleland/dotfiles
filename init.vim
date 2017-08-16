@@ -1,12 +1,15 @@
 syntax on
 set background=dark
-colorscheme primary
-highlight LineNr ctermbg=black
+colorscheme primary 
+if has('gui_vimr')
+    highlight LineNr guibg=black
+else
+    highlight LineNr ctermbg=black
+endif
 set clipboard=unnamed
 set splitright
 set splitbelow
 set number
-set foldmethod=syntax
 map <space> <leader>
 
 " sets terminal settings to local bash settings
@@ -14,7 +17,6 @@ set shell=/bin/bash\ --login
 
 "check fields if changed since recent activity and reload
 " check one time after 4s of inactivity in normal mode
-set autoread
 au CursorHold * checktime
 
 " =======================================================================
@@ -96,5 +98,6 @@ function! MyStatusLine()
     let statusline .= "| %P/%L"
     " changed color to match primary theme
     hi statusline ctermbg=71 ctermfg=16
+    hi statusline guibg=green guifg=black
     return statusline
 endfunction

@@ -6,6 +6,7 @@ set clipboard=unnamed
 set splitright
 set splitbelow
 set number
+set foldmethod=syntax
 map <space> <leader>
 
 " sets terminal settings to local bash settings
@@ -35,7 +36,12 @@ nnoremap ; :
 nnoremap : ;
 
 " opens new vsplit with terminal
-nnoremap <leader>n  :vsplit <ESC> :terminal <cr>
+nnoremap <leader>n  :vsplit <ESC> :terminal <CR>
+
+" source $MYVIMRC
+
+nnoremap <leader>s :source $MYVIMRC<cr>
+
 " nerd tree always opens in CWD
 " =======================================================================
 
@@ -52,7 +58,43 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'scrooloose/nerdtree'
 call plug#end()
 " Airline Theme
-let g:airline_theme='papercolor'
-nnoremap <leader>f :NERDTree <cr>
-" =======================================================================
+"let g:airline_theme='papercolor'
+"
 
+
+
+nnoremap <leader>f :NERDTree <CR>
+" =======================================================================
+" Status line from Max Cantor's vimrc
+"
+"
+set statusline=%!MyStatusLine()
+
+
+
+
+
+" Custom functions
+
+function! MyStatusLine()
+    let statusline = ""
+    " Filename (F -> full, f -> relative)
+    let statusline .= "%f"
+    " Buffer flags
+    let statusline .= "%( %h%1*%m%*%r%w%) "
+    " File format and type
+    let statusline .= "(%{&ff}%(\/%Y%))"
+    " Left/right separator
+    let statusline .= "%="
+    " Line & column
+    let statusline .= "(%l,%c%V) "
+    " Character under cursor (decimal)
+    " let statusline .= "%03.3b "
+    " Character under cursor (hexadecimal)
+    " let statusline .= "0x%02.2B "
+    " File progress
+    let statusline .= "| %P/%L"
+    " changed color to match primary theme
+    hi statusline ctermbg=71 ctermfg=16
+    return statusline
+endfunction

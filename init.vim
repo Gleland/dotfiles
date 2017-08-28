@@ -54,15 +54,9 @@ nnoremap <leader>s :source $MYVIMRC<cr>
 
 " Vim-plug for plugins
 call plug#begin('~/.local/share/nvim/plugged')
-    "Plug 'dhruvasagar/vim-table-mode'
-    "Plug 'vim-airline/vim-airline'
-    "Plug 'vim-airline/vim-airline-themes'
+    Plug 'dhruvasagar/vim-table-mode'
     Plug 'scrooloose/nerdtree'
 call plug#end()
-" Airline Theme
-"let g:airline_theme='papercolor'
-"
-
 
 
 nnoremap <leader>f :NERDTree <CR>
@@ -74,10 +68,8 @@ set statusline=%!MyStatusLine()
 
 
 
-
-
 " Custom functions
-
+" =======================================================================
 function! MyStatusLine()
     let statusline = ""
     " Filename (F -> full, f -> relative)

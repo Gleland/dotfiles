@@ -1,3 +1,4 @@
+alias py='python3'
 alias nv='nvim'
 alias ls='ls -Gt'
 alias ll='ls -lh'

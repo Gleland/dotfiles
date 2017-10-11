@@ -1,11 +1,7 @@
 syntax on
 set background=dark
-colorscheme primary 
-if has('gui_vimr')
-    highlight LineNr guibg=black
-else
-    highlight LineNr ctermbg=black
-endif
+colorscheme lucario
+highlight LineNr ctermbg=black
 set clipboard=unnamed
 set splitright
 set splitbelow

@@ -6,3 +6,6 @@ alias ld='ls -d */'
 alias ga='git add'
 alias gm='git commit -m'
 alias gp='git push'
+export PS1='\h:\W \u\$'
+#export PS1="\[\e[34;0m\]\h:\W \u\$ "
+export PS1="\[\e[34m\]\h\[\e[m\]:\[\e[32m\]\W\[\e[m\] \[\e[31m\]\u\[\e[m\]\[\e[33;40m\]\\$\[\e[m\] "

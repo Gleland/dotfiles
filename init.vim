@@ -1,7 +1,7 @@
 syntax on
 set background=dark
-colorscheme lucario
-"highlight LineNr ctermbg=black
+colorscheme primary 
+highlight LineNr ctermbg=black
 set clipboard=unnamed
 set splitright
 set splitbelow

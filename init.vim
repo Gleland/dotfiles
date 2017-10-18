@@ -37,12 +37,7 @@ nnoremap : ;
 nnoremap <leader>n  :vsplit <ESC> :terminal <CR>
 
 " source $MYVIMRC
-
 nnoremap <leader>s :source $MYVIMRC<cr>
-
-" nerd tree always opens in CWD
-" =======================================================================
-
 
 " =======================================================================
 " Plugin Settings

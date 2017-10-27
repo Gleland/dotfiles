@@ -18,6 +18,10 @@ au CursorHold * checktime
 " =======================================================================
 " Key Mappings
 
+" make Y behave sanely
+nnoremap Y y$
+
+
 tnoremap <Esc> <C-\><C-n>
 tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j

@@ -51,6 +51,7 @@ nnoremap <leader>s :source $MYVIMRC<cr>
 call plug#begin('~/.local/share/nvim/plugged')
     Plug 'dhruvasagar/vim-table-mode'
     Plug 'scrooloose/nerdtree'
+    Plug 'w0rp/ale'
 call plug#end()
 
 

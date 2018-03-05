@@ -1,12 +1,26 @@
+" Vim-plug for plugins
+call plug#begin('~/.local/share/nvim/plugged')
+    Plug 'joshdick/onedark.vim'
+    Plug 'vim-airline/vim-airline'
+call plug#end()
+
 syntax on
 set background=dark
-colorscheme primary 
-highlight LineNr ctermbg=black
+let g:onedark_terminal_italics=1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme ='onedark'
+colorscheme onedark 
 set clipboard=unnamed
 set splitright
 set splitbelow
 set number
+" ;asldset hidden
 map <space> <leader>
+set expandtab
+set shiftwidth=4
+set tabstop=4 
+set smartindent
 
 " sets terminal settings to local bash settings
 set shell=/bin/bash\ --login
@@ -33,59 +47,44 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" shortcut for Ex mode
-nnoremap ; :
-nnoremap : ;
-
 " opens new vsplit with terminal
 nnoremap <leader>n  :vsplit <ESC> :terminal <CR>
-
+" saves file
+nnoremap <leader>w  :w <CR>
 " source $MYVIMRC
 nnoremap <leader>s :source $MYVIMRC<cr>
 
-" =======================================================================
-" Plugin Settings
-
-
-" Vim-plug for plugins
-call plug#begin('~/.local/share/nvim/plugged')
-    Plug 'dhruvasagar/vim-table-mode'
-    Plug 'scrooloose/nerdtree'
-    Plug 'w0rp/ale'
-call plug#end()
-
-
-nnoremap <leader>f :NERDTree <CR>
-" =======================================================================
+"nnoremap <leader>f :NERDTree <CR>
 " Status line from Max Cantor's vimrc
 "
 "
-set statusline=%!MyStatusLine()
+"set statusline=%!MyStatusLine()
 
 
 
 " Custom functions
 " =======================================================================
-function! MyStatusLine()
-    let statusline = ""
-    " Filename (F -> full, f -> relative)
-    let statusline .= "%f"
-    " Buffer flags
-    let statusline .= "%( %h%1*%m%*%r%w%) "
-    " File format and type
-    let statusline .= "(%{&ff}%(\/%Y%))"
-    " Left/right separator
-    let statusline .= "%="
-    " Line & column
-    let statusline .= "(%l,%c%V) "
-    " Character under cursor (decimal)
-    " let statusline .= "%03.3b "
-    " Character under cursor (hexadecimal)
-    " let statusline .= "0x%02.2B "
-    " File progress
-    let statusline .= "| %P/%L"
-    " changed color to match primary theme
-    hi statusline ctermbg=71 ctermfg=16
-    hi statusline guibg=green guifg=black
-    return statusline
-endfunction
+" function! MyStatusLine()
+"     let statusline = ""
+"     " Filename (F -> full, f -> relative)
+"     let statusline .= "%f"
+"     " Buffer flags
+"     let statusline .= "%( %h%1*%m%*%r%w%) "
+"     " File format and type
+"     let statusline .= "(%{&ff}%(\/%Y%))"
+"     " Left/right separator
+"     let statusline .= "%="
+"     " Line & column
+"     let statusline .= "(%l,%c%V) "
+"     " Character under cursor (decimal)
+"     " let statusline .= "%03.3b "
+"     " Character under cursor (hexadecimal)
+"     " let statusline .= "0x%02.2B "
+"     " File progress
+"     let statusline .= "| %P/%L"
+"     " changed color to match primary theme
+"     hi statusline ctermbg=71 ctermfg=16
+"     hi statusline guibg=green guifg=black
+"     return statusline
+" endfunction
+"

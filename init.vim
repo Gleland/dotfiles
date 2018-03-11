@@ -9,14 +9,14 @@ set background=dark
 let g:onedark_terminal_italics=1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 2
 let g:airline_theme ='onedark'
 colorscheme onedark 
 set clipboard=unnamed
 set splitright
 set splitbelow
 set number
-" ;asldset hidden
-map <space> <leader>
+
 set expandtab
 set shiftwidth=4
 set tabstop=4 
@@ -31,6 +31,8 @@ au CursorHold * checktime
 
 " =======================================================================
 " Key Mappings
+map <space> <leader>
+map <leader>e :e $MYVIMRC<CR>
 
 " make Y behave sanely
 nnoremap Y y$

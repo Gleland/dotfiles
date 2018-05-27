@@ -1,0 +1,95 @@
+* Packages
+    #+BEGIN_SRC emacs-lisp
+	(use-package auto-compile
+	    :ensure t
+            :config (auto-compile-on-load-mode)
+	)
+	(use-package org-bullets
+	    :ensure t
+	    :init
+	    (add-hook 'org-mode-hook #'org-bullets-mode)
+	)
+	(use-package which-key
+	    :ensure t
+	    :config
+	    (which-key-mode))
+    #+END_SRC
+* Org 
+    #+BEGIN_SRC emacs-lisp 
+    (setq org-ellipsis "⤵")
+    (org-babel-do-load-languages
+	'org-babel-load-languages
+	'(
+	    (emacs-lisp . t)
+	    (ruby . t)
+	    (python . t)
+	    (sh . t)
+	    )
+    )
+    #+END_SRC
+* Evil
+    #+BEGIN_SRC emacs-lisp
+      (use-package evil
+          :ensure t
+          :config
+              (evil-mode 1)
+      )
+      (use-package evil-leader 
+          :ensure t
+          :config
+              (setq evil-leader/in-all-states 1)
+              (global-evil-leader-mode)
+              (evil-leader/set-leader "<SPC>")
+              (evil-leader/set-key
+                  "w" 'save-buffer
+                  "x" 'helm-M-x
+                  "n" 'evil-next-buffer
+                  "p" 'evil-previous-buffer
+                  "h" 'help-mode
+              )
+      )
+      (use-package evil-search-highlight-persist
+          :ensure t
+          :config
+              (global-evil-search-highlight-persist t)
+      )
+    #+END_SRC
+* Preferences
+    #+BEGIN_SRC emacs-lisp
+    (setq explicit-shell-file-name "/bin/bash")
+    (fset 'yes-or-no-p 'y-or-n-p)
+    (setq visible-bell 1)
+    (setq mac-command-modifier 'meta)
+    (setq mac-option-modifier 'none)
+    (setq use-package-verbose t)
+    (setq use-package-always-ensure t)
+    (setq load-prefer-newer t)
+
+    ;; code block settings
+    #+END_SRC
+* Functions
+    #+BEGIN_SRC emacs-lisp 
+    (defun glt-reload-init-file ()
+	(interactive)
+	(load-file "~/.emacs.d/init.el")
+    )
+    (defun dev-desk ()
+	(interactive)
+	(let ((default-directory "/ssh:user@host:"))
+	(shell)))
+    #+END_SRC
+* Key bindings
+    #+BEGIN_SRC emacs-lisp
+    (global-set-key (kbd "C-c C-l") 'glt-reload-init-file)    ; Reload .emacs file
+    #+END_SRC
+* Theme Settings
+    #+BEGIN_SRC emacs-lisp
+      (load-theme 'leuven t) ;; https://github.com/fniessen/emacs-leuven-theme
+      (use-package powerline-evil
+          :ensure t
+          :config
+              (powerline-evil-vim-color-theme)
+      )
+    #+END_SRC
+  
+  

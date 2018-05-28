@@ -14,19 +14,6 @@
 	    :config
 	    (which-key-mode))
     #+END_SRC
-* Org 
-    #+BEGIN_SRC emacs-lisp 
-    (setq org-ellipsis "⤵")
-    (org-babel-do-load-languages
-	'org-babel-load-languages
-	'(
-	    (emacs-lisp . t)
-	    (ruby . t)
-	    (python . t)
-	    (sh . t)
-	    )
-    )
-    #+END_SRC
 * Evil
     #+BEGIN_SRC emacs-lisp
       (use-package evil
@@ -56,7 +43,9 @@
     #+END_SRC
 * Preferences
     #+BEGIN_SRC emacs-lisp
-    (setq explicit-shell-file-name "/bin/bash")
+    ;(setq explicit-shell-file-name "/bin/bash")
+    (setq shell-file-name "bash")
+    (setq shell-command-switch "-ic")
     (fset 'yes-or-no-p 'y-or-n-p)
     (setq visible-bell 1)
     (setq mac-command-modifier 'meta)
@@ -66,17 +55,38 @@
     (setq load-prefer-newer t)
 
     ;; code block settings
+    ;; clipboard to work for a sane person
+    (defun copy-from-osx ()
+    (shell-command-to-string "pbpaste"))
+
+    ;(defun paste-to-osx (text &optional push)
+    ;(let ((process-connection-type nil))
+    ;(let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+    ;(process-send-string proc text)
+    ;(process-send-eof proc))))
+
+    ;(setq interprogram-cut-function 'paste-to-osx)
+    ;(setq interprogram-paste-function 'copy-from-osx) 
+    (fset 'evil-visual-update-x-selection 'ignore)
+
     #+END_SRC
 * Functions
     #+BEGIN_SRC emacs-lisp 
-    (defun glt-reload-init-file ()
-	(interactive)
-	(load-file "~/.emacs.d/init.el")
-    )
-    (defun dev-desk ()
-	(interactive)
-	(let ((default-directory "/ssh:user@host:"))
-	(shell)))
+      (defun glt-reload-init-file ()
+          (interactive)
+          (load-file "~/.emacs.d/init.el")
+      )
+      (defun dev-desk ()
+          (interactive)
+          (let ((default-directory "/ssh:user@host:"))
+          (shell)))
+      ;; JSON tool - from http://irreal.org/blog/?p=354#comment-79015
+      (defun json-format ()
+          (interactive)
+          (save-excursion
+          (shell-command-on-region (mark) (point) "python -m json.tool" (buffer-name) t)
+          )
+      )
     #+END_SRC
 * Key bindings
     #+BEGIN_SRC emacs-lisp
@@ -93,3 +103,5 @@
     #+END_SRC
   
   
+  
+

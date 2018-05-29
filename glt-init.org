@@ -53,7 +53,7 @@
     (setq use-package-verbose t)
     (setq use-package-always-ensure t)
     (setq load-prefer-newer t)
-
+    (global-linum-mode t)
     ;; code block settings
     ;; clipboard to work for a sane person
     (defun copy-from-osx ()

@@ -55,38 +55,3 @@ nnoremap <leader>n  :vsplit <ESC> :terminal <CR>
 nnoremap <leader>w  :w <CR>
 " source $MYVIMRC
 nnoremap <leader>s :source $MYVIMRC<cr>
-
-"nnoremap <leader>f :NERDTree <CR>
-" Status line from Max Cantor's vimrc
-"
-"
-"set statusline=%!MyStatusLine()
-
-
-
-" Custom functions
-" =======================================================================
-" function! MyStatusLine()
-"     let statusline = ""
-"     " Filename (F -> full, f -> relative)
-"     let statusline .= "%f"
-"     " Buffer flags
-"     let statusline .= "%( %h%1*%m%*%r%w%) "
-"     " File format and type
-"     let statusline .= "(%{&ff}%(\/%Y%))"
-"     " Left/right separator
-"     let statusline .= "%="
-"     " Line & column
-"     let statusline .= "(%l,%c%V) "
-"     " Character under cursor (decimal)
-"     " let statusline .= "%03.3b "
-"     " Character under cursor (hexadecimal)
-"     " let statusline .= "0x%02.2B "
-"     " File progress
-"     let statusline .= "| %P/%L"
-"     " changed color to match primary theme
-"     hi statusline ctermbg=71 ctermfg=16
-"     hi statusline guibg=green guifg=black
-"     return statusline
-" endfunction
-"

@@ -189,6 +189,11 @@
 (use-package which-key
     :config
     (which-key-mode))
+    
+(use-package smooth-scrolling
+    :config
+    (smooth-scrolling-mode 1)
+    (setq smooth-scroll-margin 10))
 #+END_SRC
 * Powerline
 #+BEGIN_SRC emacs-lisp
@@ -228,6 +233,11 @@
 (show-paren-mode 1)
 ;;(use-package smart-tabs-mode)
 ;;(smart-tabs-insinuate 'python 'ruby)
+
+;; display inline images always
+(setq org-display-inline-images t)
+(setq org-redisplay-inline-images t)
+(setq org-startup-with-inline-images "inlineimages")
 #+END_SRC
 * Theme Settings
 #+BEGIN_SRC emacs-lisp

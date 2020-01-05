@@ -3,6 +3,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'joshdick/onedark.vim'
     Plug 'vim-airline/vim-airline'
     Plug 'rakr/vim-one'
+    Plug '/usr/local/opt/fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'vim-syntastic/syntastic'
     Plug 'janko/vim-test'

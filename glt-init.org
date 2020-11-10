@@ -1,3 +1,4 @@
+
 * Use-Package
 #+BEGIN_SRC emacs-lisp
 (setq use-package-verbose t)
@@ -9,25 +10,6 @@
     (setq auto-package-update-delete-old-versions t
     auto-package-update-interval 4)
     (auto-package-update-maybe))
-#+END_SRC
-* Dashboard
- #+BEGIN_SRC emacs-lisp
-;;https://github.com/rakanalh/emacs-dashboard
-(use-package dashboard
-    :ensure t
-    :config
-    (dashboard-setup-startup-hook)
-    ;; Set the title
-    (setq dashboard-banner-logo-title "Welcome to Emacs Dashboard")
-    ;; Set the banner
-    ;;(setq dashboard-startup-banner [VALUE])
-    ;; Value can be
-    ;; 'official which displays the official emacs logo
-    ;; 'logo which displays an alternative emacs logo
-    ;; 1, 2 or 3 which displays one of the text banners
-    ;; "path/to/your/image.png" which displays whatever image you would prefer
-    )
-(setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
 #+END_SRC
 * Coding
 ** Ruby
@@ -44,10 +26,6 @@
     :interpreter ("python3" . python-mode)
     :config (setq python-indent-offset 4))
  #+END_SRC
-* Neotree
-#+BEGIN_SRC emacs-lisp
-(use-package neotree)
-#+END_SRC  
 * Evil
 #+BEGIN_SRC emacs-lisp
 (use-package evil-leader
@@ -57,7 +35,10 @@
     (evil-leader/set-leader "<SPC>")
     (evil-leader/set-key
 	    "w" 'save-buffer
-	    "N" 'neotree-toggle))
+	    "N" 'neotree-toggle
+	    "b" 'helm-mini
+	    "f" 'helm-find-files
+            "t" 'glt-open-todos))
 
 (use-package evil
     :config
@@ -66,6 +47,8 @@
 (use-package evil-search-highlight-persist
     :config
     (global-evil-search-highlight-persist t))
+
+(global-hl-line-mode)
 
 (use-package evil-goggles
     :config
@@ -85,6 +68,10 @@
     (interactive)
     (find-file "~/.emacs.d/glt-init.org"))
 
+(defun glt-open-todos ()
+    (interactive)
+    (find-file "~/Dropbox/org/todo.org"))
+
 (defun glt-json-format ()
     (interactive) ; JSON tool - from http://irreal.org/blog/?p=354#comment-79015
     (save-excursion
@@ -93,15 +80,15 @@
     
 (defadvice load-theme (before theme-dont-propagate activate)
   "Disable theme before loading new one."
-  (mapcar #'disable-theme custom-enabled-themes))
+  (mapc #'disable-theme custom-enabled-themes))
 
 (defun switch-theme (theme)
     (interactive
     (list
     (intern (completing-read "Load custom theme: "
-    (mapcar 'symbol-name
+    (mapc 'symbol-name
     (custom-available-themes))))))
-    (mapcar #'disable-theme custom-enabled-themes)
+    (mapc #'disable-theme custom-enabled-themes)
     (load-theme theme t))
 #+END_SRC
 * Helm
@@ -112,7 +99,6 @@
     (global-set-key (kbd "M-x") 'helm-M-x)
     (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
     (bind-key "C-x C-f" 'helm-find-files)
-    (bind-key "C-x b" 'helm-mini)
 
     (setq helm-buffers-fuzzy-matching t
     helm-recentf-fuzzy-match t)
@@ -132,11 +118,11 @@
 #+END_SRC  
 * Magit
 #+BEGIN_SRC emacs-lisp
-(use-package evil-magit
-    :config
-    (setq evil-magit-state 'normal))
-
-(use-package magit)
+;(use-package evil-magit
+;    :config
+;    (setq evil-magit-state 'normal))
+;
+;(use-package magit)
 #+END_SRC
 * Org 
 #+BEGIN_SRC emacs-lisp
@@ -157,7 +143,6 @@
     (when (not split)
     	(delete-other-windows)))
 
-
 (setq org-capture-templates
     '(("a" "My TODO task format." entry
     (file "~/Dropbox/todo.org")
@@ -169,9 +154,6 @@
     (org-capture nil "a"))
 
 (define-key global-map (kbd "C-c t a") 'glt-pop-to-org-agenda)
-(global-set-key (kbd "C-c o") 
-		(lambda () (interactive) 
-			(find-file "~/Dropbox/org/todo.org")))
 (define-key global-map (kbd "C-c c") 'glt-org-task-capture)
 #+END_SRC   
 * Packages
@@ -190,6 +172,7 @@
     'org-babel-load-languages
     '((emacs-lisp . t)
 	(python . t)
+	(latex . t)
 	(ruby . t)))
 
 (use-package which-key
@@ -210,10 +193,8 @@
 * Preferences
 #+BEGIN_SRC emacs-lisp
 (global-auto-revert-mode t) ;; reloads file if different on disk
-(desktop-save-mode 1);; re-open buffers when opening emacs again
 (global-visual-line-mode t) ; word wrapping https://stackoverflow.com/questions/3281581/how-to-word-wrap-in-emacs
-(setq explicit-shell-file-name "/bin/bash")
-;;(setq shell-command-switch "-ic")
+(setq explicit-shell-file-name "/bin/zsh")
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (defun my-terminal-visible-bell ()
@@ -227,99 +208,42 @@
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'none)
 (setq load-prefer-newer t)
-(global-linum-mode t)
+(global-nlinum-mode t)
 (setq backup-directory-alist '(("." . "~/.emacs/backups/")))
 
-;;(setq-default indent-tabs-mode nil)
 (setq tab-width 4)
-;;(setq-default tab-always-indent 'complete)
 
 ;;; Show matching parens
 (setq show-paren-delay 0)
 (show-paren-mode 1)
-;;(use-package smart-tabs-mode)
-;;(smart-tabs-insinuate 'python 'ruby)
 
 ;; display inline images always
+(setq org-image-actual-width nil) ;; https://stackoverflow.com/questions/11670654/how-to-resize-images-in-org-mode
 (setq org-display-inline-images t)
 (setq org-redisplay-inline-images t)
 (setq org-startup-with-inline-images "inlineimages")
 #+END_SRC
 * Theme Settings
 #+BEGIN_SRC emacs-lisp
-(use-package all-the-icons)
 ;; Minimal UI
 (scroll-bar-mode -1)
 (tool-bar-mode   -1)
 (tooltip-mode    -1)
 (menu-bar-mode   -1)
-;; transparent title bar
+;;;; transparent title bar
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . light))
 (setq ns-use-proxy-icon  nil)
 (setq frame-title-format nil)
 ;; Theme
-(switch-theme 'leuven)
+;; highlight color visual
+(set-face-attribute 'region nil :background "#B4D6ED")
+;;(switch-theme 'leuven)
 #+END_SRC
 * Tramp
 #+BEGIN_SRC emacs-lisp
 (setq tramp-default-method "ssh")
 #+END_SRC  
-* Eshell
-#+BEGIN_SRC emacs-lisp
-(require 'cl-lib)
-(require 'cl)
-
-(defun shortened-path (path max-len)
-    "Return a modified version of `path', replacing some components
-    with single characters starting from the left to try and get
-    the path down to `max-len'"
-    (let* ((components (split-string (abbreviate-file-name path) "/"))
-	    (len (+ (1- (length components))
-		    (reduce '+ components :key 'length)))
-	    (str ""))
-    (while (and (> len max-len)
-		(cdr components))
-	(setq str (concat str (if (= 0 (length (car components)))
-				"/"
-				(string (elt (car components) 0) ?/)))
-	    len (- len (1- (length (car components))))
-	    components (cdr components)))
-    (concat str (reduce (lambda (a b) (concat a "/" b)) components))))
-
-;   - ban
-;   - battery-empty
-;   - battery-full
-;   - battery-half
-;   - battery-quarter
-;   - battery-three-quarters
-;   - btc
-;   - chain-broken
-;   - check
-;   - chevron-right
-;   - folder
-;   - folder-o
-;   - folder-open-o
-;   - github
-;   - hashtag
-;   - key
-; - keyboard
-;   - undo
-;   - upload
-;   - usb
-;   - wifi
-;   - wrench
-; - chevron-right
-
-(setq eshell-prompt-regexp "^[^#$\n]*[#$] "
-    eshell-prompt-function
-    (lambda nil
-    (concat
-	(user-login-name) "  "
-	(shortened-path (eshell/pwd) 10)
-	(propertize " "  'face `(:foreground "blue"))
-	(if (= (user-uid) 0) "   " "  "))))
-#+END_SRC
 * Package Updates
 #+BEGIN_SRC emacs-lisp
 (use-package auto-package-update

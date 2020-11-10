@@ -129,6 +129,5 @@ nnoremap ,t :!pytest<CR>
 let test#strategy = 'neovim'
 
 
-
 " C++ commands
 nnoremap ,c :!g++ % <CR> :split <ESC> :terminal <CR> i ./a.out<CR>

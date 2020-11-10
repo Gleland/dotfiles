@@ -1,13 +1,17 @@
 " Vim-plug for plugins
 call plug#begin('~/.local/share/nvim/plugged')
-    Plug 'joshdick/onedark.vim'
+    "Plug 'joshdick/onedark.vim'
+    "Plug 'NLKNugyen/papercolor-theme'
     Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
     Plug 'rakr/vim-one'
     Plug '/usr/local/opt/fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'vim-syntastic/syntastic'
     Plug 'janko/vim-test'
     Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-vinegar'
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 syntax on
@@ -21,17 +25,28 @@ let g:airline_theme ='one'
 
 colorscheme one " dark
 
+
+
+"show trailing whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd BufWinLeave * call clearmatches()
+
+
 set clipboard=unnamed
 set splitright
 set splitbelow
 set number
+set lazyredraw " for long macros
 
-set expandtab
-set shiftwidth=4
-set tabstop=4 
-set smartindent
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
-" sets terminal settings to local bash settings
+set ignorecase "Make searching case insensitive
+set smartcase " ... unless the query has capital letters
+
+" sets terminal settings to local zsh settings
 set shell=/bin/zsh\ --login
 
 "check fields if changed since recent activity and reload
@@ -58,21 +73,29 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" opens new vsplit with terminal
-nnoremap <leader>n  :vsplit <ESC> :terminal <CR>
+" opens new vsplit with terminal, names the buffer as 'terminal'
+nnoremap <leader>n  :vsplit <ESC> :terminal <CR> :keepalt file terminal <CR>
 " saves file
 nnoremap <leader>w  :w <CR>
 " source $MYVIMRC
 nnoremap <leader>s :source $MYVIMRC <CR>
+
+" enable cursorline
+set cursorline
+
+" Fuzzy file finder
+"
+nnoremap <Leader>f :Files<cr>
+nnoremap <Leader>F :GFiles<cr>
+nnoremap <Leader>b :Buffers<cr>
+nnoremap <Leader>t :Tags<cr>
+nnoremap <Leader>g :Ag<cr>
 
 " Spacing / indentation settings
 autocmd FileType ruby   setlocal ts=2 sts=2 sw=2
 autocmd FileType python setlocal ts=4 sts=4 sw=4
 
 
-" FZF 
-nnoremap <leader>f :Files <CR>
-nnoremap <leader>b :Buffers <CR>
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -80,9 +103,19 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+
+if ! has('gui_running')
+    set ttimeoutlen=10
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
+endif
 
 
 

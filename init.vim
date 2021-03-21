@@ -12,6 +12,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-vinegar'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+    Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 syntax on

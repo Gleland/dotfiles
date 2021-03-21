@@ -6,6 +6,7 @@ alias la='ls -a'
 alias ll='ls -lh'
 alias ld='ls -d */'
 alias zshrc='vim ~/.zshrc && source ~/.zshrc'
+alias tmux_config='vim ~/.tmux.conf'
 alias reload='source ~/.zshrc'
 
 PROMPT='%F{46}%* %F{blue}%m:%F{214}%C%f> '

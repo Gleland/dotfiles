@@ -85,8 +85,8 @@ set cursorline
 
 " Fuzzy file finder
 "
-nnoremap <Leader>f :Files<cr>
-nnoremap <Leader>F :GFiles<cr>
+nnoremap <Leader>f :GFiles<cr>
+nnoremap <Leader>F :Files<cr>
 nnoremap <Leader>b :Buffers<cr>
 nnoremap <Leader>t :Tags<cr>
 nnoremap <Leader>g :Ag<cr>

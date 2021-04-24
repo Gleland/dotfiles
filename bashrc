@@ -7,7 +7,7 @@ alias bashrc='vim ~/.bashrc'
 alias bash_profile='vim ~/.bash_profile'
 alias reload='source ~/.bash_profile'
 
-PS1="\[\e[36m\]\t \[\e[34m\]\h:\[\e[32m\]\W"
+PS1="\[\e[36m\]\t \[\e[32m\]\u@\[\e[93m\]\h:\[\e[32m\]\W"
 PS1+="\[\e[33;48m\]>\[\e[m\] "
 export PS1
 

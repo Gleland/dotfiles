@@ -7,7 +7,6 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'rakr/vim-one'
     Plug '/usr/local/opt/fzf'
     Plug 'junegunn/fzf.vim'
-    Plug 'vim-syntastic/syntastic'
     Plug 'janko/vim-test'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-vinegar'
@@ -95,18 +94,6 @@ nnoremap <Leader>g :Ag<cr>
 " Spacing / indentation settings
 autocmd FileType ruby   setlocal ts=2 sts=2 sw=2
 autocmd FileType python setlocal ts=4 sts=4 sw=4
-
-
-
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
 
 if ! has('gui_running')

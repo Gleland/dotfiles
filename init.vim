@@ -5,15 +5,23 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'rakr/vim-one'
-    Plug '/usr/local/opt/fzf'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'janko/vim-test'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-vinegar'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-    Plug 'christoomey/vim-tmux-navigator'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
+
+
+" https://stackoverflow.com/questions/635770/jump-to-function-definition-in-vim
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 syntax on
 set hidden
 set background=light
@@ -85,8 +93,8 @@ set cursorline
 
 " Fuzzy file finder
 "
-nnoremap <Leader>f :GFiles<cr>
-nnoremap <Leader>F :Files<cr>
+nnoremap <Leader>f :Files<cr>
+nnoremap <Leader>F :GFiles<cr>
 nnoremap <Leader>b :Buffers<cr>
 nnoremap <Leader>t :Tags<cr>
 nnoremap <Leader>g :Ag<cr>

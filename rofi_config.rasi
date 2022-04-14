@@ -1,0 +1,5 @@
+/** Basic config file **/
+
+@import "~/.config/rofi/ubuntu.rasi"
+
+/* vim:ft=css

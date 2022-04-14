@@ -3,6 +3,7 @@ alias ls='ls -G'
 alias la='ls -a'
 alias ll='ls -lh'
 alias ld='ls -d */'
+alias wp='cd ~/workplace'
 alias bashrc='vim ~/.bashrc'
 alias bash_profile='vim ~/.bash_profile'
 alias reload='source ~/.bash_profile'
@@ -20,3 +21,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+  if [ -f ~/.work_config ]; then
+    . ~/work_config
+  fi

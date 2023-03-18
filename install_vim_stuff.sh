@@ -24,9 +24,9 @@ git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 
 # symlink config files
-ln -v autocmds.lua ~/.config/nvim/lua/config/autocmds.lua
-ln -v keymaps.lua ~/.config/nvim/lua/config/keymaps.lua
-ln -v options.lua ~/.config/nvim/lua/config/options.lua
+ln -vf autocmds.lua ~/.config/nvim/lua/config/autocmds.lua
+ln -vf keymaps.lua ~/.config/nvim/lua/config/keymaps.lua
+ln -vf options.lua ~/.config/nvim/lua/config/options.lua
 
 # symlink plugin files
-ln -v plugins.lua ~/.config/nvim/lua/plugins/plugins.lua
+ln -vf plugins.lua ~/.config/nvim/lua/plugins/plugins.lua

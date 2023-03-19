@@ -57,3 +57,6 @@ map("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- quick jump to neovim config
 map("n", "<leader>fp", "<cmd>edit ~/.config/nvim/<cr>", { desc = "open neovim config" })
+
+-- vim wiki
+map("n", "<leader>ww", "<cmd>VimwikiIndex<cr>", { desc = "Open VimWiki Index" })

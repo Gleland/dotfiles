@@ -62,4 +62,21 @@ return {
     },
   },
 
+  -- change alpha config
+  -- opts will be merged with the parent spec
+  {
+  "goolord/alpha-nvim",
+  opts = function()
+    local dashboard = require("alpha.themes.dashboard")
+    local logo = [[
+   ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+   ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+   ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+   ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+   ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+   ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
+    ]]
+    dashboard.section.header.val = vim.split(logo, "\n")
+  end
+  },
 }

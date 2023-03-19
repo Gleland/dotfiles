@@ -31,11 +31,11 @@ vim.opt.list = true -- Show some invisible characters (tabs...
 
 vim.g.vimwiki_list = {
 
-  {
-    path = "~/$USER/vimwiki",
-    syntax = "markdown",
-    ext = ".md",
-  },
+	{
+		path = "~/vimwiki",
+		syntax = "markdown",
+		ext = ".md",
+	},
 }
 vim.g.vimwiki_global_ext = 0 -- don't treat all md files as vimwiki
 vim.g.vimwiki_folding = "expr"

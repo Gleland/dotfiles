@@ -20,6 +20,10 @@ vim.opt.smartcase = true -- ... unless the query has capital letters
 -- ===============================================
 -- Theme Settings
 -- ===============================================
+
+vim.opt.number = true
+vim.opt.relativenumber = false
+
 vim.opt.hlsearch = true -- highlight entries while searching
 vim.opt.cursorline = true -- always have a horizontal line where the cursor is
 vim.opt.termguicolors = true -- True color support
@@ -30,12 +34,11 @@ vim.opt.list = true -- Show some invisible characters (tabs...
 -- ===============================================
 
 vim.g.vimwiki_list = {
-
-	{
-		path = "~/vimwiki",
-		syntax = "markdown",
-		ext = ".md",
-	},
+  {
+    path = "~/vimwiki",
+    syntax = "markdown",
+    ext = ".md",
+  },
 }
 vim.g.vimwiki_global_ext = 0 -- don't treat all md files as vimwiki
 vim.g.vimwiki_folding = "expr"

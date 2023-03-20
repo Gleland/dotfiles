@@ -19,6 +19,12 @@ return {
   {'navarasu/onedark.nvim'},
   {'sainnhe/everforest'},
   {'romgrk/doom-one.vim'},
+  {'nlknguyen/papercolor-theme'},
+  {'EdenEast/nightfox.nvim'},
+  {'sonph/onehalf'},
+  {'liuchengxu/space-vim-dark'},
+  {'olimorris/onedarkpro.nvim'},
+  {'tyrannicaltoucan/vim-deep-space'},
 
   -- Git
    --  'tpope/vim-fugitive' ? or maybe vimagit?

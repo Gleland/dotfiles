@@ -60,4 +60,4 @@ map("n", "<leader>fp", "<cmd>edit ~/.config/nvim/<cr>", { desc = "open neovim co
 
 -- vim wiki
 map("n", "<leader>ww", "<cmd>VimwikiIndex<cr>", { desc = "Open VimWiki Index" })
-map("n", "<C-Space>", "<cmd>VimwikiToggleListItem<cr>", { desc = "Toggle completion oof a Vimwiki todo item" })
+map("n", "<C-c>", "<cmd>VimwikiToggleListItem<cr>", { desc = "Toggle completion oof a Vimwiki todo item" })

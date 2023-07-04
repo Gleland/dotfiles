@@ -12,15 +12,18 @@ PS1="\[\e[36m\]\t \[\e[32m\]\u@\[\e[93m\]\h:\[\e[32m\]\W"
 PS1+="\[\e[33;48m\]>\[\e[m\] "
 export PS1
 
-
 # enable bash completion in interactive shells
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+	if [ -f /usr/share/bash-completion/bash_completion ]; then
+		. /usr/share/bash-completion/bash_completion
+	elif [ -f /etc/bash_completion ]; then
+		. /etc/bash_completion
+	fi
 fi
-  if [ -f ~/.work_config ]; then
-    . ~/work_config
-  fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+. "$HOME/.cargo/env"
+
+if [ -f ~/.work_config ]; then
+	. ~/work_config
+fi

@@ -1,0 +1,44 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  setup-bash:
+    desc: "sets up bash"
+    cmds:
+      - |
+        if [ -e ~/.bash_profile ]
+        then
+            echo "backing up existing bash profile"
+            mv ~/.bash_profile ~/.bash_profile.bak.`$(date '+%Y-%m-%d-%H:%M:%S')`
+        else
+            echo $(pwd)
+            echo "symlinking bash_profile"
+            ln -vf shells/bash_profile ~/.bash_profile
+        fi
+        if [ -e ~/.bashrc ]
+        then
+            echo "backing up existing bashrc"
+            mv ~/.bashrc ~/.bashrc.bak.`$(date '+%Y-%m-%d-%H:%M:%S')`
+        else
+            echo "symlinking bashrc"
+            ln -vf shells/bashrc ~/.bashrc
+        fi
+
+  setup-zsh:
+    desc: "sets up zsh"
+    cmds:
+      # first, set as default.
+      # Most systems are configured with zsh already, so this is more to handle any weird edge cases.
+      - echo "changing default shell to ZSH"
+      - "chsh -s /bin/zsh"
+      - |
+        if [ -e ~/.zshrc ]
+        then
+            echo "backing up existing zshrc"
+            mv ~/.zshrc ~/.zshrc.bak.`$(date '+%Y-%m-%d-%H:%M:%S')`
+        else
+            echo "symlinking zshrc"
+            ln -vf shells/zshrc ~/.zshrc
+        fi
+      - (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile

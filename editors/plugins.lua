@@ -26,6 +26,9 @@ return {
   {'olimorris/onedarkpro.nvim'},
   {'tyrannicaltoucan/vim-deep-space'},
 
+  -- languages
+  {'fatih/vim-go'},
+
   -- Git
    --  'tpope/vim-fugitive' ? or maybe vimagit?
 
@@ -49,7 +52,7 @@ return {
     opts = {
       ensure_installed = {
         "bash",
-        "help",
+        "vimdoc",
         "html",
         "javascript",
         "json",

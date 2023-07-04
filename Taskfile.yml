@@ -1,0 +1,65 @@
+# https://taskfile.dev
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+# Silent mode disables the echoing of commands before Task runs it.
+silent: true
+
+includes:
+  shells: ./shells # will look for ./shells/Taskfile.yml
+  editors: ./editors # will look for ./editors/Taskfile.yml
+  tooling: ./tooling # will look for ./tooling/Taskfile.yml
+
+tasks:
+  default:
+    desc: "To ensure steps are not run by accident, the default task instead prints this"
+    cmds:
+      - echo "To ensure steps are not run by accident, the default task instead prints this"
+      - echo "To see all the available tasks, run 'task -l'"
+      - echo "To run a specific task, run 'task $task-name'"
+  setup-all:
+    desc: "runs all the tasks available, with the exception of i3"
+    cmds:
+      # TODO consider using the deps keyword for running things more concurrently
+      - task: setup-brew
+      - task: setup-brew-tools
+      - task: setup-shells
+      - task: setup-editors
+      - task: setup-tooling
+      - task: setup-finish
+  setup-brew:
+    desc: "installs homebrew"
+    cmds:
+      - |
+        if [[ $(file /usr/local/bin/brew | cut -d ':' -f1) == "/usr/local/bin/brew" ]]
+        then
+             echo "Homebrew binary already found, skipping installation"
+        else
+           echo "No Homebrew binary found, installing"
+           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+           eval "$(/opt/homebrew/bin/brew shellenv)"
+        fi
+  setup-brew:
+    desc: "installs homebrew tools"
+    cmds:
+      # add most brew installs all together for grouping/tracking
+      # for specific tools (emacs,vim,etc.) they will get their own tasks
+      - brew install fzf
+      - brew install kubectl
+      - brew install kubectx
+  setup-shells:
+    desc: "runs the setup for bash and zsh configuration"
+    deps: [shells:setup-bash, shells:setup-zsh]
+  setup-editors:
+    desc: "runs the setup for text editors like vim and emacs"
+    deps: [editors:setup-vim, editors:setup-emacs]
+  setup-tooling:
+    desc: "runs the setup for tooling like tmux"
+    # TODO configure i3 with `platform`
+    deps: [tooling:setup-tmux]
+  setup-finish:
+    desc: "Echoes a statment to inform the user that all tasks have been completed."
+    cmds:
+      - echo "\nSetup complete! Please start a new terminal session to ensure everything loads as expected.\n"

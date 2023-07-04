@@ -1,0 +1,78 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  default:
+    cmds:
+      - echo "To ensure steps are not run by accident, the default task instead prints this"
+      - echo "To see all the available tasks, run 'task -l'"
+      - echo "To run a specific task, run 'task $task-name'"
+  setup-emacs:
+    desc: "sets up emacs"
+    cmds:
+      - echo '{{.TASK}} not impemented yet'
+      # TODO decide whether to throw away old config and 
+      # bring in doom emacs files
+      # - mkdir -p ~/.emacs.d
+      # - ln -v init.el ~/.emacs.d/init.el
+      # - ln -v glt-init.org ~/.emacs.d/glt-init.org
+      # - ln -v glt-init.el ~/.emacs.d/glt-init.el
+  setup-vim:
+    desc: "sets up vim"
+    cmds:
+      - |
+        if [ -e /usr/local/bin/nvim ]
+        then
+            echo "no neovim binary detected, installing."
+            brew install neovim
+        else
+            echo "neovim binary found, skipping installation"
+        fi
+      - |
+        if [ -e ~/.config/nvim ]
+        then
+            echo "backing up existing ~/.config/nvim directory"
+            mv ~/.config/nvim ~/.config/nvim.bak.`$(date '+%Y-%m-%d-%H:%M:%S')`
+        else
+            echo "no existing ~/.config/nvim directory found, skipping"
+        fi
+      # optional but recommended by lazyvim guide
+      - |
+        if [ -e ~/.local/share/nvim ]
+        then
+            echo "backing up existing ~/.config/nvim directory"
+            mv ~/.local/share/nvim ~/.local/share/nvim.bak.`$(date '+%Y-%m-%d-%H:%M:%S')`
+        else
+            echo "no existing ~/.local/share/nvim directory found, skipping"
+        fi
+      - |
+        if [ -e ~/.cache/nvim ]
+        then
+            echo "backing up existing ~/.cache/nvim directory"
+            mv ~/.cache/nvim ~/.cache/nvim.bak.`$(date '+%Y-%m-%d-%H:%M:%S')`
+        else
+            echo "no existing ~/.cache/nvim directory found, skipping"
+        fi
+      # now, let's get lazyvim setup
+      # https://github.com/LazyVim/lazyvim
+      # clone latest version of stater
+      - git clone https://github.com/LazyVim/starter ~/.config/nvim
+      # # remove the git repo after cloning, we won't need it after
+      - rm -rf ~/.config/nvim/.git
+      # remove empty templates from LazyVim and symlink local config files
+      # TODO think about a better way of symlinking these more programmatically
+      # so we don't have to add a new lnie for every file/location
+      - rm ~/.config/nvim/lua/config/autocmds.lua
+      - rm ~/.config/nvim/lua/config/keymaps.lua
+      - rm ~/.config/nvim/lua/config/options.lua
+      - ln -vf editors/autocmds.lua ~/.config/nvim/lua/config/autocmds.lua
+      - ln -vf editors/keymaps.lua ~/.config/nvim/lua/config/keymaps.lua
+      - ln -vf editors/options.lua ~/.config/nvim/lua/config/options.lua
+      - ln -vf editors/plugins.lua ~/.config/nvim/lua/plugins/plugins.lua
+    preconditions:
+      - task: setup-brew
+        msg: "Homebrew installation failed, please view output and investigate before trying again"
+      - task: validate-brew-installation
+        msg: "Homebrew not instaled, please run `task setup-brew`"
+

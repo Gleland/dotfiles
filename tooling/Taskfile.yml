@@ -1,0 +1,49 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  default:
+    cmds: 
+      - echo "To ensure steps are not run by accident, the default task instead prints this"
+      - echo "To see all the available tasks, run 'task -l'"
+      - echo "To run a specific task, run 'task $task-name'"
+    preconditions:
+      - task: setup-brew
+        msg: "Homebrew installation failed, please view output and investigate before trying again"
+      - task: validate-brew-installation
+        msg: "Homebrew not instaled, please run `task setup-brew`"
+  setup-i3:
+    desc: "sets up i3"
+    cmds:
+      - echo "setup-i3"
+      # - mkdir -p ~/.config/i3
+      # install i3
+      # apt update && apt install i3
+      # - ln -v i3_config ~/.config/i3/config
+      # install i3 status bar
+      # - mkdir -p ~/.config/i3status
+      # - ln -v i3_status_config ~/.config/i3status/config
+      # install rofi config and themes
+      # - mkdir -p ~/.config/rofi
+      # - ln -v rofi_config.rasi ~/.config/rofi/config.rasi
+      # - ln -v rofi_ubuntu_theme.rasi ~/.config/rofi/ubuntu.rasi
+  setup-tmux:
+    desc: "sets up tmux"
+    cmds:
+      - echo "setup-tmux"
+      - brew install tmux
+      - |
+        if [ -e ~/.tmux.conf ]
+        then
+            echo "backing up existing ~/.tmux.conf"
+            mv ~/.tmux.conf ~/.tmux.conf.bak.`$(date '+%Y-%m-%d-%H:%M:%S')`
+        else
+            echo "symlinking tmux config"
+            ln -v tooling/tmux.conf ~/.tmux.conf
+        fi
+    preconditions:
+      - task: setup-brew
+        msg: "Homebrew installation failed, please view output and investigate before trying again"
+      - task: validate-brew-installation
+        msg: "Homebrew not instaled, please run `task setup-brew`"

@@ -61,3 +61,10 @@ map("n", "<leader>fp", "<cmd>edit ~/.config/nvim/<cr>", { desc = "open neovim co
 -- vim wiki
 map("n", "<leader>ww", "<cmd>VimwikiIndex<cr>", { desc = "Open VimWiki Index" })
 map("n", "<C-c>", "<cmd>VimwikiToggleListItem<cr>", { desc = "Toggle completion oof a Vimwiki todo item" })
+-- https://github.com/LazyVim/LazyVim/discussions/658
+map("n", "<A-k>", "<esc>k", { desc = "Move up" })
+map("n", "<A-j>", "<esc>j", { desc = "Move down" })
+map("i", "<A-k>", "<esc>gk", { desc = "Move up" })
+map("i", "<A-j>", "<esc>gj", { desc = "Move down" })
+map("v", "<A-k>", "<esc>gk", { desc = "Move up" })
+map("v", "<A-j>", "<esc>gj", { desc = "Move down" })

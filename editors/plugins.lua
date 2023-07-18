@@ -43,6 +43,13 @@ return {
         pyright = {},
         tsserver = {},
         -- rust_analyzer {},
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      filesystem = {
+        filtered_items = {
+          visible = true, -- when true, they will just be displayed differently than normal items
+        },
       },
     },
   },
@@ -87,5 +94,16 @@ return {
     ]]
     dashboard.section.header.val = vim.split(logo, "\n")
   end
+  {
+    "folke/flash.nvim",
+    -- https://github.com/LazyVim/LazyVim/issues/1109
+    opts = { modes = { search = { enabled = false } } },
+  },
+  {
+    "NeogitOrg/neogit",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = function()
+      require("neogit").setup({})
+    end,
   },
 }

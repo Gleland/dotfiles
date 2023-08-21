@@ -28,6 +28,9 @@ map("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 map("n", "<leader>bp", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 map("n", "<leader>bn", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete buffer" })
+map("n", "<leader>b[", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+map("n", "<leader>b]", "<cmd>bnext<cr>", { desc = "Next buffer" })
+map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete buffer" })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
@@ -61,6 +64,8 @@ map("n", "<leader>fp", "<cmd>edit ~/.config/nvim/<cr>", { desc = "open neovim co
 -- vim wiki
 map("n", "<leader>ww", "<cmd>VimwikiIndex<cr>", { desc = "Open VimWiki Index" })
 map("n", "<C-c>", "<cmd>VimwikiToggleListItem<cr>", { desc = "Toggle completion oof a Vimwiki todo item" })
+map("n", "<leader>wj", "<cmd>VimwikiMakeDiaryNote<cr>", { desc = "Make a new diary note" })
+
 -- https://github.com/LazyVim/LazyVim/discussions/658
 map("n", "<A-k>", "<esc>k", { desc = "Move up" })
 map("n", "<A-j>", "<esc>j", { desc = "Move down" })

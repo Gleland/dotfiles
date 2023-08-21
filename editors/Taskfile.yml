@@ -63,13 +63,10 @@ tasks:
       # remove empty templates from LazyVim and symlink local config files
       # TODO think about a better way of symlinking these more programmatically
       # so we don't have to add a new lnie for every file/location
-      - rm ~/.config/nvim/lua/config/autocmds.lua
-      - rm ~/.config/nvim/lua/config/keymaps.lua
-      - rm ~/.config/nvim/lua/config/options.lua
-      - ln -vf editors/autocmds.lua ~/.config/nvim/lua/config/autocmds.lua
-      - ln -vf editors/keymaps.lua ~/.config/nvim/lua/config/keymaps.lua
-      - ln -vf editors/options.lua ~/.config/nvim/lua/config/options.lua
-      - ln -vf editors/plugins.lua ~/.config/nvim/lua/plugins/plugins.lua
+      - rm ~/.config/nvim/lua/config/*.lua
+      - ln -sf $PWD/editors/nvim/config/*.lua ~/.config/nvim/lua/config/
+      - rm ~/.config/nvim/lua/plugins/*.lua
+      - ln -sf $PWD/editors/nvim/plugins/*.lua ~/.config/nvim/lua/plugins/
     preconditions:
       - task: setup-brew
         msg: "Homebrew installation failed, please view output and investigate before trying again"

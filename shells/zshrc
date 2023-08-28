@@ -20,10 +20,11 @@ ZSH_THEME="robbyrussell"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+# if present, source any work-related config
+if [ -f ~/.work_config ]; then
+	. ~/work_config
+fi
 
-# User configuration
-
-#
 # Example aliases
 alias dropbox='cd ~/Dropbox/'
 alias la='ls -a'
@@ -41,5 +42,3 @@ alias vim='nvim'
 alias wp="cd ~/workplace"
 alias zshrc="vim ~/.zshrc && reload"
 alias zshrc='vim ~/.zshrc && source ~/.zshrc'
-
-

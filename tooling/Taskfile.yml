@@ -37,7 +37,7 @@ tasks:
         if [ -e ~/.tmux.conf ]
         then
             echo "backing up existing ~/.tmux.conf"
-            mv ~/.tmux.conf ~/.tmux.conf.bak.`$(date '+%Y-%m-%d-%H:%M:%S')`
+            mv ~/.tmux.conf "~/.tmux.conf.bak.$(date '+%Y-%m-%d-%H:%M:%S')"
         else
             echo "symlinking tmux config"
             ln -v tooling/tmux.conf ~/.tmux.conf

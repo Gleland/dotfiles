@@ -73,3 +73,14 @@ map("i", "<A-k>", "<esc>gk", { desc = "Move up" })
 map("i", "<A-j>", "<esc>gj", { desc = "Move down" })
 map("v", "<A-k>", "<esc>gk", { desc = "Move up" })
 map("v", "<A-j>", "<esc>gj", { desc = "Move down" })
+
+-- overwrite lazyvim mappings with vim-tmux-navigator mappings
+-- see: https://github.com/christoomey/vim-tmux-navigator/blob/master/plugin/tmux_navigator.vim
+-- https://github.com/LazyVim/LazyVim/discussions/277#discussioncomment-4995462
+vim.cmd([[
+  noremap <silent> <c-h> :<C-U>TmuxNavigateLeft<cr>
+  noremap <silent> <c-j> :<C-U>TmuxNavigateDown<cr>
+  noremap <silent> <c-k> :<C-U>TmuxNavigateUp<cr>
+  noremap <silent> <c-l> :<C-U>TmuxNavigateRight<cr>
+  noremap <silent> <c-\> :<C-U>TmuxNavigatePrevious<cr>
+]])

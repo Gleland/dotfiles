@@ -13,17 +13,46 @@ return {
     end,
   },
 
-  -- Theme options
-  { "rakr/vim-one" },
-  { "navarasu/onedark.nvim" },
-  { "sainnhe/everforest" },
-  { "romgrk/doom-one.vim" },
-  { "nlknguyen/papercolor-theme" },
-  { "EdenEast/nightfox.nvim" },
-  { "sonph/onehalf" },
-  { "liuchengxu/space-vim-dark" },
-  { "olimorris/onedarkpro.nvim" },
-  { "tyrannicaltoucan/vim-deep-space" },
+	-- languages
+	{ "fatih/vim-go" },
+	-- LSPs
+	{
+		"neovim/nvim-lspconfig",
+		---@class PluginLspOpts
+		opts = {
+			---@type lspconfig.options
+			servers = {
+				-- the following LSP servers will be automatically installed with mason and loaded with lspconfig
+				pyright = {},
+				tsserver = {},
+				eslint = {},
+				--gopls = {},
+				-- rust_analyzer {},
+				-- },
+			},
+		},
+		{
+			"nvim-neo-tree/neo-tree.nvim",
+			opts = {
+				filesystem = {
+					filtered_items = {
+						visible = true, -- when true, they will just be displayed differently than normal items
+					},
+				},
+				setup = {
+					eslint = function()
+						require("lazyvim.util").on_attach(function(client)
+							if client.name == "eslint" then
+								client.server_capabilities.documentFormattingProvider = true
+							elseif client.name == "tsserver" then
+								client.server_capabilities.documentFormattingProvider = false
+							end
+						end)
+					end,
+				},
+			},
+		},
+  { "christoomey/vim-tmux-navigator" },
 
   -- languages
   { "fatih/vim-go" },
